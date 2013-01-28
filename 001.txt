@@ -1,0 +1,27 @@
+.logon 153.64.28.192/dbc, dbc
+database hadoop;
+.defaults
+.export report file=001.out
+.set format off
+.heading '001'
+.sidetitles off
+.set rtitle '001'
+.set width 65531
+.set retlimit * *
+.set session respbuflen MAX1MB
+.set reportalign compatible
+
+* select RequestText from dbc.tables where DatabaseName='hadoop' order by CreateTimeStamp;
+SELECT t2.*  FROM TABLE (MonitorPhysicalConfig()) AS t2;
+--SELECT t2.*  FROM TABLE (MonitorvirtualConfig()) AS t2;
+--select * from SystemFE.Opt_RAS_Table;
+--select * from SystemFE.Opt_Cost_Table;
+--select * from SystemFE.Opt_DBSCtl_Table;
+
+--SELECT * from DBC.CostProfiles_v;
+-- select * from DBC.CostProfileValues_v;
+
+.set format off
+.export reset
+.logoff
+.exit
